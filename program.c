@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #define NB_VALEURS 3
-#define MAX_LONGUEUR 50
+#define MAX_LONGUEUR 50 // Représente la taille de la plus grande barre
 
 int main() {
     int valeurs[NB_VALEURS] = {8, 4, 12};
@@ -14,11 +14,15 @@ int main() {
         }
     }
 
-    // 2. Affichage avec mise à l'échelle
+    // 2. Calcul de la variable echelle en float (on force le .0f pour éviter la division entière)
+    float echelle = (float)MAX_LONGUEUR / (float)maximum;
+
+    // 3. Affichage avec mise à l'échelle
     for (int i = 0; i < NB_VALEURS; i++) {
         printf("| ");
-        // Calcul du nombre de 'X' proportionnel à MAX_LONGUEUR
-        int nb_croix = (valeurs[i] * MAX_LONGUEUR) / maximum;
+        
+        // Calcul du nombre de croix avec la variable echelle
+        int nb_croix = (int)(valeurs[i] * echelle + 0.5f);
         
         for (int j = 0; j < nb_croix; j++) {
             printf("X");

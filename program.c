@@ -3,7 +3,7 @@
 #define NB_VALEURS 3
 
 int main() {
-    int valeurs[NB_VALEURS] = { 8, 4, 12 };
+    int valeurs[NB_VALEURS] = {8, 4, 12};
 
     for (int i = 0; i < NB_VALEURS; i++) {
         printf("|");

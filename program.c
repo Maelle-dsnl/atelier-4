@@ -1,35 +1,45 @@
 #include <stdio.h>
 
 #define NB_VALEURS 3
-#define MAX_LONGUEUR 50 // Représente la taille de la plus grande barre
+#define MAX_LIGNES 15
 
-int main() {
-    int valeurs[NB_VALEURS] = {8, 4, 12};
+void afficher_ligne_histov(int tableau[], int taille, double y);
 
-    // 1. Recherche du maximum
+int main()
+{
+    int valeurs[NB_VALEURS] = { 8, 4, 12 };
+
     int maximum = valeurs[0];
-    for (int i = 1; i < NB_VALEURS; i++) {
-        if (valeurs[i] > maximum) {
-            maximum = valeurs[i];
+    for (int j = 1; j < NB_VALEURS; j++)
+    {
+        if (valeurs[j] > maximum)
+        {
+            maximum = valeurs[j];
         }
     }
 
-    // 2. Calcul de la variable echelle en float (on force le .0f pour éviter la division entière)
-    float echelle = (float)MAX_LONGUEUR / (float)maximum;
-
-    // 3. Affichage avec mise à l'échelle
-    for (int i = 0; i < NB_VALEURS; i++) {
-        printf("| ");
-        
-        // Calcul du nombre de croix avec la variable echelle
-        int nb_croix = (int)(valeurs[i] * echelle + 0.5f);
-        
-        for (int j = 0; j < nb_croix; j++) {
-            printf("X");
-        }
-        printf(" %d\n", valeurs[i]);
+    for (int i = 0; i < MAX_LIGNES; i++)
+    {
+        double y = (double)maximum * (MAX_LIGNES - i) / MAX_LIGNES;
+        afficher_ligne_histov(valeurs, NB_VALEURS, y);
     }
-    printf("+-----------------------------------\n");
-
+    printf("+---------------------------------------\n");
     return 0;
+}
+
+void afficher_ligne_histov(int tableau[], int taille, double y)
+{
+    printf("| ");
+    for (int k = 0; k < taille; k++)
+    {
+        if (tableau[k] >= y)
+        {
+            printf("xxx ");
+        }
+        else
+        {
+            printf("    ");
+        }
+    }
+    printf("\n");
 }
